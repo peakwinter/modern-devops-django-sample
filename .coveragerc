@@ -1,0 +1,12 @@
+[run]
+omit =
+  myapp/admin.py
+  myapp/admin/*
+  myapp/migrations/*
+  myapp/tests/*
+  manage.py
+  modern_devops/settings/*
+  modern_devops/wsgi.py
+
+[report]
+precision = 2

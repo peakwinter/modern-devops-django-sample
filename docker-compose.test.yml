@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    build: ./
+    command: bash -c "coverage run --source='.' manage.py test kanban && coverage report"
+    volumes:
+      - ./:/site:rw
+    depends_on:
+      - postgresql
+      - redis
+    environment:
+      DJANGO_SETTINGS_MODULE: modern_devops.settings.test
+
+  postgresql:
+    restart: always
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_USER: myapp_test
+      POSTGRES_PASSWORD: myapp_test
+      POSTGRES_DB: myapp_test
+
+  redis:
+    restart: always
+    image: redis:latest

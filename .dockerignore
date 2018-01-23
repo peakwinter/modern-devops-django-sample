@@ -1,0 +1,6 @@
+.git
+modern_devops/settings/prod.py
+modern_devops/settings/staging.py
+*.pyc
+*.md
+.dbdata

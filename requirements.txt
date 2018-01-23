@@ -1,0 +1,4 @@
+Django>=1.11,<1.12
+coverage
+psycopg2
+redis

@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    image: registry.gitlab.com/pathto/myapp:staging
+    environment:
+      DJANGO_SETTINGS_MODULE: modern_devops.settings.staging
+    volumes:
+      - /var/data/myapp/staging/settings.py:/site/modern_devops/settings/staging.py:ro
+    depends_on:
+      - postgresql
+      - redis
+    networks:
+      - default
+      - public
+
+  postgresql:
+    image: postgres:10-alpine
+    volumes:
+      - /var/data/realtime/myapp/staging/db:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_USER: myapp_staging
+      POSTGRES_PASSWORD: myapp_staging
+      POSTGRES_DB: myapp_staging
+
+  redis:
+    image: redis:latest
+
+networks:
+  public:
+    external: true
